@@ -1,23 +1,23 @@
 # 📰 Daily Tech News Agent
 
-An automated Python-based agent that fetches the latest technology news and sends a well-formatted summary to your email every day.
+An automated cloud-based Python agent that fetches the latest technology news and delivers a well-formatted summary via email every day at **10:00 AM IST**.
 
-This project uses NewsAPI to collect real-time tech news, formats it into a readable newsletter-style report, and delivers it automatically via Gmail.
+This project runs automatically using **GitHub Actions**, so it works even when your laptop is turned off.
 
 ---
 
 ## 🚀 Features
 
-* Fetches latest **Technology News** in real-time
+* Fetches latest **Technology News** in real time using NewsAPI
 * Extracts:
 
-  * News title
+  * Title
   * Short description
   * Source link
-* Formats content into a clean **Daily Tech Brief**
-* Sends email automatically using Gmail SMTP
-* Supports daily automation using Task Scheduler
-* Fully automated workflow
+* Formats news into a clean **Daily Tech Brief**
+* Sends email using Gmail SMTP
+* Runs automatically every day via GitHub Actions
+* Fully cloud-based automation (no local system required)
 
 ---
 
@@ -27,21 +27,36 @@ This project uses NewsAPI to collect real-time tech news, formats it into a read
 * Requests (API integration)
 * NewsAPI
 * Gmail SMTP
-* Windows Task Scheduler
+* GitHub Actions (Cloud Scheduler)
 
 ---
 
 ## 📂 Project Workflow
 
 ```
-NewsAPI → Fetch Articles → Format News → Send Email → Daily Automation
+NewsAPI → Fetch Articles → Format Summary → Send Email → GitHub Actions Scheduler
+```
+
+---
+
+## 📁 Project Structure
+
+```
+tech-news-agent/
+│
+├── main.py
+├── requirements.txt
+├── README.md
+└── .github/
+    └── workflows/
+        └── news.yml
 ```
 
 ---
 
 ## ⚙️ Setup Instructions
 
-### 1. Clone the Repository
+### 1. Clone Repository
 
 ```
 git clone https://github.com/your-username/tech-news-agent.git
@@ -53,36 +68,63 @@ cd tech-news-agent
 ### 2. Install Dependencies
 
 ```
-pip install requests
+pip install -r requirements.txt
 ```
 
 ---
 
-### 3. Get NewsAPI Key
+### 3. Get Required Credentials
+
+#### NewsAPI Key
 
 1. Go to: https://newsapi.org
 2. Create a free account
 3. Copy your API key
 
-Update in `main.py`:
+---
 
-```
-NEWS_API_KEY = "your_newsapi_key"
-```
+#### Gmail App Password
+
+1. Enable **2-Step Verification** in your Google account
+2. Go to **App Passwords**
+3. Generate a password for:
+
+   * App: Mail
+   * Device: Other (Python)
+4. Copy the 16-character password (without spaces)
 
 ---
 
-### 4. Configure Gmail
+## 🔐 Add Secrets in GitHub
 
-1. Enable **2-Step Verification** in your Google account
-2. Generate an **App Password**
-3. Update in `main.py`:
+Go to:
+
+**Repository → Settings → Secrets and variables → Actions**
+
+Add the following secrets:
+
+| Name         | Description                     |
+| ------------ | ------------------------------- |
+| NEWS_API_KEY | Your NewsAPI key                |
+| EMAIL        | Your Gmail address              |
+| APP_PASSWORD | Gmail App Password              |
+| TO_EMAIL     | Email where news should be sent |
+
+---
+
+## ⏰ Automation Schedule
+
+The workflow runs daily at:
+
+**10:00 AM IST**
+
+Cron configuration (UTC):
 
 ```
-EMAIL = "your_email@gmail.com"
-APP_PASSWORD = "your_app_password"
-TO_EMAIL = "receiver_email@gmail.com"
+30 4 * * *
 ```
+
+You can also trigger it manually from the **Actions** tab.
 
 ---
 
@@ -90,35 +132,15 @@ TO_EMAIL = "receiver_email@gmail.com"
 
 ```
 Daily Tech Brief
-----------------------------------------
+========================================
 
 1. Samsung Galaxy S26 Ultra Launch
-Samsung introduces its latest flagship smartphone with upgraded performance and camera features.
+Samsung introduces its latest flagship smartphone with improved performance and camera.
 Read more: https://...
 
 2. Google AI Update
-Google expands its AI capabilities with new tools and features for developers.
+Google expands its AI capabilities with new tools for developers.
 Read more: https://...
-```
-
----
-
-## ⏰ Automation
-
-To run automatically every day:
-
-* Use **Windows Task Scheduler**
-* Schedule `main.py` to run at your preferred time
-
----
-
-## 📁 Project Structure
-
-```
-tech-news-agent/
-│
-├── main.py
-├── README.md
 ```
 
 ---
@@ -128,24 +150,25 @@ tech-news-agent/
 This project demonstrates:
 
 * API Integration
-* Python Automation
-* Email Notification System
-* Real-world data processing
+* Cloud Automation
+* Secure Environment Variables
+* Email Notification Systems
+* Real-world Python automation
 
 Suitable for:
 
-* Beginner Python projects
-* Automation learning
 * Portfolio / Resume
+* Automation learning
+* Beginner DevOps projects
 
 ---
 
 ## 🔮 Future Improvements
 
-* WhatsApp notification support
-* AI-based news summarization
-* Topic filtering (AI, Cloud, Programming)
-* Cloud deployment (run 24/7)
+* HTML email newsletter design
+* AI-based news filtering (AI/ML only)
+* WhatsApp notifications
+* Cloud deployment with database history
 
 ---
 
